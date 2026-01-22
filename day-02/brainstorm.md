@@ -39,33 +39,31 @@ Range: 92856246-93001520
 
 93009300, while being an invalidID, is outside of the range.
 
-# Finding meaning
-
-## Some kind of Rule
+## Finding a Rule
 - Assuming an ID is exactly a doubled block, such as `n|n`, one could increment `n` and check if `n|n` is still within the given range.
 
 this would still require some string magic and conversion...
 
 ## A Numerical formula
-### for invalid ID
-92999299 is invalid
-let 9299 = n
-n * 10^(4) is first half 92990000
-n is second half
-92999299 = n * 10^(4) + n
-let k = number of digits of n
-92999299 = n * 10^(k) + n
-
-Range: 92856246-93001520
-
-the smallest id is 92859285, (9285 * 10^4 + 9285)
-the largest id is 93009300, (9300 * 10^4 + 9300)
-
-only care for the sum of all ids :::
-Sum all the ids, from n = 9289 to 9300
-where an id = n * 10^(k) + n
-
-Sum(n * 10^k + n) = 
-Sum(n * 10^k) + Sum(n) = 
-S(n) * S(10^k) + S(n) = 
-**factor out S(n) I'm not sure how to factor the summation**
+92999299 is an invalid id<br>
+let 9299 = n<br>
+n * 10^(4) is first half 92990000<br>
+n is second half<br>
+92999299 = n * 10^(4) + n<br>
+let k = number of digits of n<br>
+92999299 = n * 10^(k) + n<br>
+<br>
+Range: 92856246-93001520<br>
+<br>
+the smallest id is 92859285, (9285 * 10^4 + 9285)<br>
+the largest id is 93009300, (9300 * 10^4 + 9300)<br>
+<br>
+only need to return the sum of all ids :::<br>
+Sum all the ids, from n = 9289 to 9300<br>
+where an id = n * 10^(k) + n<br>
+<br>
+Sum(n * 10^k + n) = <br>
+Sum(n * 10^k) + Sum(n) = <br>
+S(n) * S(10^k) + S(n) = <br>
+factor out S(n) <br>
+**unsure how to factor the summation** <br>
