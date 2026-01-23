@@ -1,6 +1,6 @@
 from heapq import heappop, heappush, heapify
 
-filepath = "input.txt"
+filepath = "example.txt"
 totalJoltage = 0
 
 with open(filepath, "r") as file:
@@ -17,7 +17,8 @@ with open(filepath, "r") as file:
                 lineMaxJoltage = max(lineMaxJoltage, combination)
 
             maxDigitSeen = max(maxDigitSeen, currentDigit)
-        
+
         totalJoltage += lineMaxJoltage
 
-print(totalJoltage)
+assert totalJoltage == 357, f"expected 357, got {totalJoltage}"
+print(f"Total Joltage: {totalJoltage}")
