@@ -9,8 +9,6 @@ def test_part1_sample():
     numberOfIds = int(res.stdout.decode('ascii'))
     assert numberOfIds == 3, f"expected 3, got {numberOfIds}"
 
-test_part1_sample()
-
 def test_part1():
     res = subprocess.run(
         ["node", "part1.js", "input.txt"],

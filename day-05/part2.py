@@ -1,4 +1,4 @@
-def parse(filepath):
+def parseRanges(filepath):
     ranges = []
     with open(filepath, "r") as file:
         for line in file:
@@ -18,6 +18,7 @@ def mergeRanges(ranges):
     while i < len(ranges):
         start = ranges[i][0]
         end = ranges[i][1]
+        # if ranges overlap, update end value
         while i+1 < len(ranges) and end >= ranges[i+1][0]:
             end = max(end, ranges[i+1][1])
             i+=1
@@ -27,7 +28,7 @@ def mergeRanges(ranges):
     return merged_ranges
 
 def part2(filepath):
-    ranges = parse(filepath)
+    ranges = parseRanges(filepath)
     merged_ranges = mergeRanges(ranges)
 
     numberOfIds = 0

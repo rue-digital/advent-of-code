@@ -5,6 +5,7 @@ function parseInput(text) {
   const ranges = [];
   const ids = [];
 
+  // parse ranges
   let index = 0;
   while (lines[index].includes("-")) {
     const range = lines[index].split("-");
@@ -16,6 +17,7 @@ function parseInput(text) {
 
   index++;
 
+  // parse ids
   while (index < lines.length - 1) {
     ids.push(Number(lines[index]));
     index++;
@@ -28,34 +30,36 @@ function parseInput(text) {
 }
 
 function countIdsInRange(ids, ranges) {
-  let freshcount = 0;
+  let numberOfInRangeIds = 0;
   let idsIndex = 0;
   let rangeIndex = 0;
 
   while (idsIndex < ids.length && rangeIndex < ranges.length) {
+    // if id > rangeStart, continue to next range
     if (ids[idsIndex] > ranges[rangeIndex][1]) {
       rangeIndex++;
       continue;
     }
+    // if rangeStart <= id <= rangeEnd, increment freshIdsCount
     if (
       ranges[rangeIndex][0] <= ids[idsIndex] &&
       ids[idsIndex] <= ranges[rangeIndex][1]
     ) {
-      freshcount++;
+      numberOfInRangeIds++;
     }
     idsIndex++;
   }
 
-  return freshcount;
+  return numberOfInRangeIds;
 }
 
 export async function part1(filepath) {
   const content = await readFile(filepath, "utf-8");
   const { ids, ranges } = parseInput(content);
-  const freshcount = countIdsInRange(ids, ranges);
-  return freshcount;
+  const numberOfInRangeIds = countIdsInRange(ids, ranges);
+  return numberOfInRangeIds;
 }
 
 const filepath = process.argv[2];
-const freshIdCount = await part1(filepath);
-console.log(freshIdCount);
+const numberOfIds = await part1(filepath);
+console.log(numberOfIds);
