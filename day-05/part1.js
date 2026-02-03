@@ -31,23 +31,15 @@ function parseInput(text) {
 
 function countIdsInRange(ids, ranges) {
   let numberOfInRangeIds = 0;
-  let idsIndex = 0;
-  let rangeIndex = 0;
 
-  while (idsIndex < ids.length && rangeIndex < ranges.length) {
-    // if id > rangeStart, continue to next range
-    if (ids[idsIndex] > ranges[rangeIndex][1]) {
-      rangeIndex++;
-      continue;
+  for (let i = 0; i < ids.length; i++) {
+    for (let r = 0; r < ranges.length; r++) {
+      const [start, end] = ranges[r];
+      if (start <= ids[i] && ids[i] <= end) {
+        numberOfInRangeIds++;
+        break; // move onto next id
+      }
     }
-    // if rangeStart <= id <= rangeEnd, increment freshIdsCount
-    if (
-      ranges[rangeIndex][0] <= ids[idsIndex] &&
-      ids[idsIndex] <= ranges[rangeIndex][1]
-    ) {
-      numberOfInRangeIds++;
-    }
-    idsIndex++;
   }
 
   return numberOfInRangeIds;
