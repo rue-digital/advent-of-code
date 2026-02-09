@@ -9,11 +9,9 @@ def part1(filepath):
 
     splits = 0
     beams = set()
+    beams.add(grid[0].index("S"))
 
     for i, row in enumerate(grid):
-        if "S" in row:  # first row
-            beams.add(row.index("S"))
-            continue
         if i == len(grid) - 1:  # last row
             break
         # propagate beams from current to the row below
